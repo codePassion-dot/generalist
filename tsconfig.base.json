@@ -14,7 +14,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@generalist/api-rest/auth": ["libs/api-rest/auth/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

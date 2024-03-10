@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  db:
+    container_name: generalist
+    image: postgres:16.2-bookworm # NOTE: always use debian variant to avoid mapping host /etc/passwd
+    ports:
+      - 5432:5432
+    user: ${UID}:${GID}
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    env_file: ../../apps/api-rest/.env

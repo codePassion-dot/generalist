@@ -1,0 +1,8 @@
+{
+  "name": "mailer",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/mailer/src",
+  "projectType": "library",
+  "targets": {},
+  "tags": []
+}

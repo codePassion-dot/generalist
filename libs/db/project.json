@@ -1,0 +1,21 @@
+{
+  "name": "db",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/db/src",
+  "projectType": "library",
+  "targets": {
+    "postgres:up": {
+      "command": "UID=$(id -u) GID=$(id -g) docker compose -f libs/db/docker-compose.yml up -d"
+    },
+    "postgres:down": {
+      "command": "UID=$(id -u) GID=$(id -g) docker compose -f libs/db/docker-compose.yml down"
+    },
+    "migrations:generate": {
+      "command": "npx drizzle-kit generate:pg"
+    },
+    "migrations:run": {
+      "command": "npx tsx libs/db/src/lib/migrate.ts"
+    }
+  },
+  "tags": []
+}

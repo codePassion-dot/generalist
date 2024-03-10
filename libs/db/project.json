@@ -5,13 +5,13 @@
   "projectType": "library",
   "targets": {
     "postgres:up": {
-      "command": "[ ! -d 'postgres/' ] && mkdir postgres; UID=$(id -u) GID=$(id -g) docker compose -f libs/db/docker-compose.yml up -d"
+      "command": "[ ! -d 'libs/db/postgres/' ] && mkdir libs/db/postgres; UID=$(id -u) GID=$(id -g) docker compose -f libs/db/docker-compose.yml up -d"
     },
     "postgres:down": {
       "command": "UID=$(id -u) GID=$(id -g) docker compose -f libs/db/docker-compose.yml down"
     },
     "migrations:generate": {
-      "command": "npx drizzle-kit generate:pg"
+      "command": "npx drizzle-kit generate:pg --config libs/db/drizzle.config.ts"
     },
     "migrations:run": {
       "command": "npx tsx libs/db/src/lib/migrate.ts"

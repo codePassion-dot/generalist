@@ -5,7 +5,7 @@
   "projectType": "library",
   "targets": {
     "postgres:up": {
-      "command": "UID=$(id -u) GID=$(id -g) docker compose -f libs/db/docker-compose.yml up -d"
+      "command": "[ ! -d 'postgres/' ] && mkdir postgres; UID=$(id -u) GID=$(id -g) docker compose -f libs/db/docker-compose.yml up -d"
     },
     "postgres:down": {
       "command": "UID=$(id -u) GID=$(id -g) docker compose -f libs/db/docker-compose.yml down"

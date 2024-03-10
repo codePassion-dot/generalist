@@ -1,0 +1,1 @@
+ALTER TABLE "users" ADD COLUMN "image" text DEFAULT 'https://avatar.iran.liara.run/public';

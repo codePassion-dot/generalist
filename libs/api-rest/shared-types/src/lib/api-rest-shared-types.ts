@@ -22,5 +22,6 @@ declare module 'express-session' {
     passport: {
       user: Express.User;
     };
+    messages: string[];
   }
 }

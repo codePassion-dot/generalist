@@ -26,15 +26,16 @@ const magicLogin = new MagicLoginStrategy({
   // "payload" contains { "destination": "email" }
   // In standard passport fashion, call callback with the error as the first argument (if there was one)
   // and the user data as the second argument!
-  verify: (payload, callback) => {
+  verify: async (payload, callback) => {
     // Get or create a user with the provided email from the database
-    findByEmailOrCreate({ email: payload.destination, name: payload.name })
-      .then((user) => {
-        callback(null, user);
-      })
-      .catch((err: Error) => {
-        callback(err);
-      });
+    const user = await findByEmailOrCreate({
+      email: payload.destination,
+      name: payload.name,
+    });
+    if (!user) {
+      callback(new Error('User not found'));
+    }
+    return callback(null, user);
   },
 
   // Optional: options passed to the jwt.sign call (https://github.com/auth0/node-jsonwebtoken#jwtsignpayload-secretorprivatekey-options-callback)

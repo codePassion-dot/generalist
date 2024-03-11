@@ -23,7 +23,7 @@ export const findByEmailOrCreate = async ({
   if (newUser.length > 0) {
     return newUser[0];
   }
-  throw new Error('Error creating user');
+  return undefined;
 };
 
 export const findUserByEmail = async (email: string) => {

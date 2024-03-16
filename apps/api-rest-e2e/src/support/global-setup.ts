@@ -1,6 +1,7 @@
 import { v2 as compose } from 'docker-compose';
 import * as path from 'path';
-
+import { spawn, exec } from 'child_process';
+import util from 'util';
 /* eslint-disable */
 var __TEARDOWN_MESSAGE__: string;
 var __COMPOSE__: any;
@@ -10,16 +11,46 @@ module.exports = async function () {
   console.log('\nSetting up...\n');
   globalThis.__COMPOSE__ = compose;
 
+  const buildBackend = () => {
+    return new Promise((resolve, reject) => {
+      const dockerBuild = spawn('nx', ['docker-build', 'api-rest'], {
+        cwd: path.join(__dirname, '../../../../'),
+      });
+      dockerBuild.stdout.on('data', (data) => {
+        process.stdout.write(`${data}\n`);
+      });
+      dockerBuild.stderr.on('data', (data) => {
+        process.stderr.write(`${data}\n`);
+      });
+      dockerBuild.on('close', (code) => {
+        resolve(`Docker build process exited with code ${code}`);
+      });
+      dockerBuild.on('error', (err) => {
+        reject(`Failed to build docker image, ${err}`);
+      });
+    });
+  };
+
   try {
     await globalThis.__COMPOSE__.upAll({
       cwd: path.join(__dirname, '../../../../libs/db'),
       env: { UID: String(process.getuid()), GID: String(process.getgid()) },
-      commandOptions: [['--force-recreate']],
       callback: (chunk: Buffer) => {
         console.log('job in progress: ', chunk.toString());
       },
     });
-    console.log('Boot-up completed.');
+    const buildBackendResponse = await buildBackend();
+    console.log(buildBackendResponse);
+    const execAsync = util.promisify(exec);
+    const { stderr, stdout } = await execAsync(
+      'docker run --net host --env-file ./.env --name api-rest -d -t api-rest',
+      {
+        cwd: path.join(__dirname, '../../../api-rest'),
+      }
+    );
+    console.log(`stdout: ${stdout}`);
+    console.error(`stderr: ${stderr}`);
+    await new Promise((resolve) => setTimeout(resolve, 2000));
   } catch (err) {
     console.log(
       'Something went wrong during docker compose boot-up:',

@@ -1,11 +1,7 @@
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { Client } from 'pg';
 import * as schema from './schema';
-import { config } from 'dotenv';
-import { resolve } from 'path';
 import { env } from '@generalist/api-rest/env';
-
-config({ path: resolve('apps/api-rest/.env') });
 
 export const client = new Client({
   host: env.DB_HOST || '127.0.0.1',

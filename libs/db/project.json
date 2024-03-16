@@ -14,7 +14,12 @@
       "command": "npx drizzle-kit generate:pg --config libs/db/drizzle.config.ts"
     },
     "migrations:run": {
-      "command": "npx tsx libs/db/src/lib/migrate.ts"
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx ts-node -r tsconfig-paths/register libs/db/src/lib/migrate.ts",
+        "envFile": "apps/api-rest/.env",
+        "env": { "TS_NODE_PROJECT": "libs/db/tsconfig.json" }
+      }
     }
   },
   "tags": []

@@ -2,9 +2,10 @@ import express from 'express';
 import session from 'express-session';
 
 import { authRouter } from '@generalist/api-rest/auth';
+import { env } from '@generalist/api-rest/env';
 
-const host = process.env.HOST ?? 'localhost';
-const port = process.env.PORT ? Number(process.env.PORT) : 3000;
+const host = env.HOST ?? 'localhost';
+const port = env.PORT ? Number(env.PORT) : 3000;
 const app = express();
 
 app.use(express.json());

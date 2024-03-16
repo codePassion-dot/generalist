@@ -1,6 +1,7 @@
 import { Resend } from 'resend';
+import { env } from '@generalist/api-rest/env';
 
-const resend = new Resend(process.env['RESEND_API_KEY']);
+const resend = new Resend(env.RESEND_API_KEY);
 
 type Email = {
   to: string;
@@ -17,7 +18,7 @@ export const sendEmail = async ({
 }: Email) => {
   const msg = {
     to,
-    from: process.env['EMAIL'] ?? 'jacobo1aristizabal@gmail.com',
+    from: env.EMAIL ?? 'jacobo1aristizabal@gmail.com',
     subject,
     ...(html ? { html } : { text }),
   };

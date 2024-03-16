@@ -8,13 +8,14 @@ import {
 } from '../data-access';
 import crypto from 'crypto';
 import { users } from '@generalist/db';
+import { env } from '@generalist/api-rest/env';
 
 type User = typeof users.$inferSelect;
 
 const oauthGoogle = new GoogleStrategy(
   {
-    clientID: process.env['GOOGLE_CLIENT_ID'],
-    clientSecret: process.env['GOOGLE_CLIENT_SECRET'],
+    clientID: env.GOOGLE_CLIENT_ID,
+    clientSecret: env.GOOGLE_CLIENT_SECRET,
     callbackURL: 'http://localhost:3000/oauth2/redirect/google',
     scope: ['profile', 'email'],
     state: true,

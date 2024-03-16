@@ -1,0 +1,8 @@
+{
+  "name": "api-rest-env",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/api-rest/env/src",
+  "projectType": "library",
+  "targets": {},
+  "tags": []
+}

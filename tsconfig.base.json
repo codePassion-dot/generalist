@@ -16,12 +16,13 @@
     "baseUrl": ".",
     "paths": {
       "@generalist/api-rest/auth": ["libs/api-rest/auth/src/index.ts"],
+      "@generalist/api-rest/env": ["libs/api-rest/env/src/index.ts"],
       "@generalist/api-rest/shared-types": [
         "libs/api-rest/shared-types/src/index.ts"
       ],
       "@generalist/db": ["libs/db/src/index.ts"],
       "@generalist/mailer": ["libs/mailer/src/index.ts"]
-    },
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

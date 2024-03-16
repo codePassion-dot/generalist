@@ -1,10 +1,11 @@
 import { sendEmail } from '@generalist/mailer';
 import MagicLoginStrategy from 'passport-magic-login';
 import { findByEmailOrCreate } from '../data-access';
+import { env } from '@generalist/api-rest/env';
 
 const magicLogin = new MagicLoginStrategy({
   // Used to encrypt the authentication token. Needs to be long, unique and (duh) secret.
-  secret: process.env.MAGIC_LINK_SECRET,
+  secret: env.MAGIC_LINK_SECRET,
 
   // The authentication callback URL
   callbackUrl: '/login/email/verify',

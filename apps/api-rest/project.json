@@ -37,6 +37,9 @@
         }
       }
     },
+    "type-check": {
+      "command": "npx tsc -b apps/api-rest"
+    },
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",

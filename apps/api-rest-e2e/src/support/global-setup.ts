@@ -11,6 +11,7 @@ module.exports = async function () {
   console.log('\nSetting up...\n');
   globalThis.__COMPOSE__ = compose;
 
+  const execAsync = util.promisify(exec);
   const buildBackend = () => {
     return new Promise((resolve, reject) => {
       const dockerBuild = spawn('nx', ['docker-build', 'api-rest'], {
@@ -31,6 +32,25 @@ module.exports = async function () {
     });
   };
 
+  const startBackend = () => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const { stderr, stdout } = await execAsync(
+          'docker run --net host --env-file ./.env --name api-rest -d -t api-rest',
+          {
+            cwd: path.join(__dirname, '../../../api-rest'),
+          }
+        );
+        console.log(`stdout: ${stdout}`);
+        console.error(`stderr: ${stderr}`);
+        // NOTE: This is a workaround to give the container time to boot up.
+        setTimeout(resolve, 2000);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  };
+
   try {
     await globalThis.__COMPOSE__.upAll({
       cwd: path.join(__dirname, '../../../../libs/db'),
@@ -41,16 +61,7 @@ module.exports = async function () {
     });
     const buildBackendResponse = await buildBackend();
     console.log(buildBackendResponse);
-    const execAsync = util.promisify(exec);
-    const { stderr, stdout } = await execAsync(
-      'docker run --net host --env-file ./.env --name api-rest -d -t api-rest',
-      {
-        cwd: path.join(__dirname, '../../../api-rest'),
-      }
-    );
-    console.log(`stdout: ${stdout}`);
-    console.error(`stderr: ${stderr}`);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await startBackend();
   } catch (err) {
     console.log(
       'Something went wrong during docker compose boot-up:',

@@ -4,12 +4,10 @@ import { spawn, exec } from 'child_process';
 import util from 'util';
 /* eslint-disable */
 var __TEARDOWN_MESSAGE__: string;
-var __COMPOSE__: any;
 
 module.exports = async function () {
   // Start services that that the app needs to run (e.g. database, docker-compose, etc.).
   console.log('\nSetting up...\n');
-  globalThis.__COMPOSE__ = compose;
 
   const execAsync = util.promisify(exec);
   const buildBackend = () => {
@@ -29,6 +27,16 @@ module.exports = async function () {
       dockerBuild.on('error', (err) => {
         reject(`Failed to build docker image, ${err}`);
       });
+    });
+  };
+
+  const startDatabase = async () => {
+    await compose.upAll({
+      cwd: path.join(__dirname, '../../../../libs/db'),
+      env: { UID: String(process.getuid()), GID: String(process.getgid()) },
+      callback: (chunk: Buffer) => {
+        console.log('job in progress: ', chunk.toString());
+      },
     });
   };
 
@@ -52,13 +60,7 @@ module.exports = async function () {
   };
 
   try {
-    await globalThis.__COMPOSE__.upAll({
-      cwd: path.join(__dirname, '../../../../libs/db'),
-      env: { UID: String(process.getuid()), GID: String(process.getgid()) },
-      callback: (chunk: Buffer) => {
-        console.log('job in progress: ', chunk.toString());
-      },
-    });
+    await startDatabase();
     const buildBackendResponse = await buildBackend();
     console.log(buildBackendResponse);
     await startBackend();

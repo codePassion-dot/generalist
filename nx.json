@@ -33,7 +33,31 @@
       "options": {
         "targetName": "test"
       }
+    },
+    {
+      "plugin": "@nx/vite/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "previewTargetName": "preview",
+        "testTargetName": "test",
+        "serveTargetName": "serve",
+        "serveStaticTargetName": "serve-static"
+      }
+    },
+    {
+      "plugin": "@nx/playwright/plugin",
+      "options": {
+        "targetName": "e2e"
+      }
     }
   ],
-  "nxCloudAccessToken": "OTVlYjBlOGMtMTk0Zi00NDZmLTkxZWYtZDk1MGU2Y2ZhNTIxfHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "OTVlYjBlOGMtMTk0Zi00NDZmLTkxZWYtZDk1MGU2Y2ZhNTIxfHJlYWQtd3JpdGU=",
+  "generators": {
+    "@nx/web:application": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "vitest",
+      "e2eTestRunner": "playwright"
+    }
+  }
 }

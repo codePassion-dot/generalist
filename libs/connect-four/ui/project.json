@@ -1,0 +1,19 @@
+{
+  "name": "connect-four-ui",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/connect-four/ui/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/connect-four/ui",
+        "main": "libs/connect-four/ui/src/index.ts",
+        "tsConfig": "libs/connect-four/ui/tsconfig.lib.json",
+        "assets": ["libs/connect-four/ui/*.md"]
+      }
+    }
+  },
+  "tags": []
+}

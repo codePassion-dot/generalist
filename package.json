@@ -7,6 +7,7 @@
   "dependencies": {
     "@sendgrid/mail": "^8.1.1",
     "axios": "^1.6.0",
+    "class-variance-authority": "^0.7.0",
     "docker-compose": "^0.24.7",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.29.4",

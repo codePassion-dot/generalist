@@ -10,8 +10,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/apps/connect-four",
-        "postcssConfig": "apps/connect-four/postcss.config.js"
+        "outputPath": "dist/apps/connect-four"
       },
       "configurations": {
         "development": {

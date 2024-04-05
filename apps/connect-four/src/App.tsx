@@ -1,5 +1,10 @@
 import { type Component } from 'solid-js';
-import { Button, CircledButton, Typography } from '@generalist/connect-four/ui';
+import {
+  Button,
+  CircledButton,
+  MenuButton,
+  Typography,
+} from '@generalist/connect-four/ui';
 
 const App: Component = () => {
   return (
@@ -9,6 +14,7 @@ const App: Component = () => {
         <Typography intent="p">Press me</Typography>
         <CircledButton />
         <Button intent="salmon"> play vs cpu </Button>
+        <MenuButton />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>

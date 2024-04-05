@@ -1,5 +1,5 @@
 import { type Component } from 'solid-js';
-import { Button, Typography } from '@generalist/connect-four/ui';
+import { Button, CircledButton, Typography } from '@generalist/connect-four/ui';
 
 const App: Component = () => {
   return (
@@ -7,12 +7,8 @@ const App: Component = () => {
       <header>
         <h1 class="font-medium">Hello world! Whereas recognition</h1>
         <Typography intent="p">Press me</Typography>
-        <Button intent="primary">
-          <div class="flex w-full justify-center h-full items-center">
-            play vs cpu
-          </div>
-        </Button>
         <CircledButton />
+        <Button intent="salmon"> play vs cpu </Button>
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>

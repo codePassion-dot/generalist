@@ -6,13 +6,13 @@ const buttonWithin = cva(
   {
     variants: {
       intent: {
-        primary: ['bg-salmon-pink', 'text-white'],
-        secondary: ['bg-pastel-yellow', 'text-black'],
-        third: ['bg-white', 'text-black'],
+        salmon: ['bg-salmon-pink', 'text-white'],
+        yellow: ['bg-pastel-yellow', 'text-black'],
+        white: ['bg-white', 'text-black'],
       },
     },
     defaultVariants: {
-      intent: 'primary',
+      intent: 'salmon',
     },
   }
 );

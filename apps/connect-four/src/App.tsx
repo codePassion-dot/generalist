@@ -12,6 +12,7 @@ const App: Component = () => {
             play vs cpu
           </div>
         </Button>
+        <CircledButton />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>

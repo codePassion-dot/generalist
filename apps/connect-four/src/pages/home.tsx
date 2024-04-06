@@ -5,6 +5,7 @@ import {
   PlayerVsPlayerIcon,
   Typography,
 } from '@generalist/connect-four/ui';
+import { A } from '@solidjs/router';
 
 const HomePage: Component = () => {
   return (
@@ -19,7 +20,7 @@ const HomePage: Component = () => {
             <PlayerVsPlayerIcon />
           </div>
         </Button>
-        <Button intent="white">
+        <Button href="/rules" as={A} intent="white">
           <div class="flex w-full pl-2 items-center justify-between">
             <Typography intent="h2">game rules</Typography>
           </div>

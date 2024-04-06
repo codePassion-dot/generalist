@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { cva, type VariantProps } from 'class-variance-authority';
-import { type Component, type JSX } from 'solid-js';
+import { ComponentProps, type Component, type JSX } from 'solid-js';
+import { Dynamic } from 'solid-js/web';
 
 const buttonWithin = cva(
   'absolute px-2 flex h-5/6 justify-between rounded-t-[14px] rounded-b-xl items-center uppercase inset-[1.5px]',
@@ -17,18 +19,38 @@ const buttonWithin = cva(
   }
 );
 
-interface ButtonProps
-  extends JSX.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonWithin> {}
+type ElementType = 'button' | Component<any>;
 
-const Button: Component<ButtonProps> = ({ intent, children, ...props }) => {
+type DynamicProps<T extends ElementType> = {
+  children?: JSX.Element;
+  as?: T;
+};
+
+type HtmlTagPropsWithoutAsAndChildren<T extends ElementType> = Omit<
+  ComponentProps<T>,
+  keyof DynamicProps<T>
+>;
+
+type ButtonProps<T extends ElementType> = HtmlTagPropsWithoutAsAndChildren<T> &
+  JSX.ButtonHTMLAttributes<HTMLButtonElement> &
+  VariantProps<typeof buttonWithin> &
+  DynamicProps<T>;
+
+const Button = <T extends ElementType = 'button'>({
+  intent,
+  children,
+  as,
+  ...props
+}: ButtonProps<T>) => {
+  const component = as || 'button';
   return (
-    <button
+    <Dynamic
+      component={component}
       class="py-10 w-full focus:outline-none hover:bg-royal-purple bg-black rounded-t-2xl rounded-b-xl h-14 relative"
       {...props}
     >
       <div class={buttonWithin({ intent })}>{children}</div>
-    </button>
+    </Dynamic>
   );
 };
 

@@ -5,6 +5,7 @@ import './index.css';
 
 import App from './App';
 import HomePage from './pages/home';
+import RulesPage from './pages/rules';
 
 const root = document.getElementById('root');
 
@@ -18,6 +19,7 @@ render(
   () => (
     <Router root={App}>
       <Route path="/" component={HomePage} />
+      <Route path="/rules" component={RulesPage} />
     </Router>
   ),
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

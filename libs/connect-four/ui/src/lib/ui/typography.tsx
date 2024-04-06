@@ -20,7 +20,7 @@ const typography = cva('typography', {
 
 type CvaTypographyProps = VariantProps<typeof typography>;
 
-export type ElementType =
+type ElementType =
   | Exclude<CvaTypographyProps['intent'], null | undefined>
   | Component<any>;
 

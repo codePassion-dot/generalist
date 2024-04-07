@@ -25,7 +25,7 @@ const CircledButton: Component<CircledButtonProps> = ({ ...props }) => (
     <div class="absolute stroke-[3] text-3xl bg-salmon-pink text-white flex rounded-full inset-[2.5px] peer justify-center items-center uppercase">
       <CheckIcon />
     </div>
-    <div class="rounded-full group-hover:bg-royal-purple inset-0 absolute bg-black h-[69px] -z-10 peer-hover:bg-royal-purple"></div>
+    <div class="rounded-full group-hover:bg-violet-blue inset-0 absolute bg-black h-[69px] -z-10 peer-hover:bg-violet-blue"></div>
   </button>
 );
 

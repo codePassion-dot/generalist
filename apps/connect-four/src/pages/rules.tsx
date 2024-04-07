@@ -1,6 +1,6 @@
-import { CircledButton, Typography } from '@generalist/connect-four/ui';
-import { useNavigate } from '@solidjs/router';
-import { Component, onMount } from 'solid-js';
+import { CircledButton, Typography } from "@generalist/connect-four/ui";
+import { useNavigate } from "@solidjs/router";
+import { Component, onMount } from "solid-js";
 
 const RulesPage: Component = () => {
   // eslint-disable-next-line prefer-const
@@ -12,20 +12,20 @@ const RulesPage: Component = () => {
   const navigate = useNavigate();
 
   const howToPlay = [
-    'Red goes first in the first game.',
-    'Players must alternate turns, and only one disc can be dropped in each turn.',
-    'The game ends when there is a 4-in-a-row or a stalemate.',
-    'The starter of the previous game goes second on the next game.',
+    "Red goes first in the first game.",
+    "Players must alternate turns, and only one disc can be dropped in each turn.",
+    "The game ends when there is a 4-in-a-row or a stalemate.",
+    "The starter of the previous game goes second on the next game.",
   ];
 
   return (
-    <main class="h-screen overflow-hidden flex justify-center items-center bg-royal-purple">
+    <main class="flex h-screen items-center justify-center overflow-hidden bg-royal-purple">
       <dialog
         ref={dialog}
-        class="bg-black w-[95%] rounded-t-[40px] rounded-b-[38px] h-[70%] relative"
+        class="relative h-[70%] w-[95%] rounded-b-[38px] rounded-t-[40px] bg-black md:h-[580px] md:w-[60%] lg:w-[490px]"
       >
-        <div class="outline-none gap-8 flex flex-col bg-white absolute h-[97.5%] rounded-t-[36px] rounded-b-[38px] pt-5 px-4 inset-1">
-          <Typography intent="h1" class="uppercase text-center">
+        <div class="absolute inset-1 flex h-[97.5%] flex-col gap-8 rounded-b-[38px] rounded-t-[36px] bg-white px-5 pt-5 outline-none">
+          <Typography intent="h1" class="text-center uppercase">
             Rules
           </Typography>
           <section class="flex flex-col gap-4">
@@ -33,7 +33,7 @@ const RulesPage: Component = () => {
               Objective
             </Typography>
             <Typography class="text-black/65" intent="p">
-              Be the first player to connect 4 of the smae colored discs ihn a
+              Be the first player to connect 4 of the same colored discs in a
               row (either vertically, horizontally, or diagonally).
             </Typography>
           </section>
@@ -41,11 +41,11 @@ const RulesPage: Component = () => {
             <Typography intent="h3" class="uppercase text-royal-purple">
               How to play
             </Typography>
-            <ol class="list-decimal-without-dot pl-4 list-outside">
+            <ol class="list-outside list-decimal-without-dot pl-4">
               {howToPlay.map((rule) => (
                 <li class="[&:not(last-child)]:mb-3">
                   <Typography
-                    class="text-black/65 relative left-3 text-right inline"
+                    class="relative left-3 inline text-right text-black/65"
                     intent="p"
                   >
                     {rule}
@@ -55,7 +55,7 @@ const RulesPage: Component = () => {
             </ol>
           </section>
         </div>
-        <div class="absolute -bottom-5 left-1/2 -translate-x-1/2 z-10">
+        <div class="absolute -bottom-5 left-1/2 z-10 -translate-x-1/2">
           <CircledButton onClick={() => navigate(-1)} />
         </div>
       </dialog>

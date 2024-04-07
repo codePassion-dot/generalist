@@ -12,6 +12,9 @@ module.exports = {
       white: '#FFFFFF',
     },
     extend: {
+      listStyleType: {
+        'decimal-without-dot': 'decimal-without-dot',
+      },
       fontFamily: {
         sans: ['Space Grotesk', ...defaultTheme.fontFamily.sans],
       },

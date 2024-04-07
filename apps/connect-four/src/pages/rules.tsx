@@ -22,7 +22,7 @@ const RulesPage: Component = () => {
     <main class="flex h-screen items-center justify-center overflow-hidden bg-royal-purple">
       <dialog
         ref={dialog}
-        class="relative h-[70%] w-[95%] rounded-b-[38px] rounded-t-[40px] bg-black md:h-[580px] md:w-[60%] lg:w-[490px]"
+        class="relative h-[70%] w-[95%] rounded-b-[38px] rounded-t-[40px] bg-black md:h-[580px] md:w-3/5 lg:w-[490px]"
       >
         <div class="absolute inset-1 flex h-[97.5%] flex-col gap-8 rounded-b-[38px] rounded-t-[36px] bg-white px-5 pt-5 outline-none">
           <Typography intent="h1" class="text-center uppercase">

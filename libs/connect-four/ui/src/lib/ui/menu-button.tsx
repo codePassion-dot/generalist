@@ -1,6 +1,6 @@
 const MenuButton = () => {
   return (
-    <button class="py-1 px-4 uppercase text-white rounded-full bg-royal-purple hover:bg-salmon-pink">
+    <button class="rounded-full bg-royal-purple px-4 py-1 uppercase text-white hover:bg-salmon-pink">
       Menu
     </button>
   );

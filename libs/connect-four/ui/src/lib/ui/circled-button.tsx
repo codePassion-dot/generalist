@@ -1,4 +1,4 @@
-import type { Component, JSX } from 'solid-js';
+import type { Component, JSX } from "solid-js";
 
 type CircledButtonProps = JSX.ButtonHTMLAttributes<HTMLButtonElement>;
 
@@ -19,13 +19,13 @@ function CheckIcon(props: JSX.SvgSVGAttributes<SVGSVGElement>) {
 
 const CircledButton: Component<CircledButtonProps> = ({ ...props }) => (
   <button
-    class="rounded-full w-[64px] h-[64px] hover:bg-royal-purple group relative bg-black"
+    class="group relative h-[64px] w-[64px] rounded-full bg-black hover:bg-royal-purple"
     {...props}
   >
-    <div class="absolute stroke-[3] text-3xl bg-salmon-pink text-white flex rounded-full inset-[2.5px] peer justify-center items-center uppercase">
+    <div class="peer absolute inset-[2.5px] flex items-center justify-center rounded-full bg-salmon-pink stroke-[3] text-3xl uppercase text-white">
       <CheckIcon />
     </div>
-    <div class="rounded-full group-hover:bg-violet-blue inset-0 absolute bg-black h-[69px] -z-10 peer-hover:bg-violet-blue"></div>
+    <div class="absolute inset-0 -z-10 h-[69px] rounded-full bg-black group-hover:bg-violet-blue peer-hover:bg-violet-blue"></div>
   </button>
 );
 

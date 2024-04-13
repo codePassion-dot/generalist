@@ -10,7 +10,7 @@ import { A } from "@solidjs/router";
 const Buttons: Component = () => {
   return (
     <>
-      <Button intent="yellow">
+      <Button href="/game-board" as={A} intent="yellow">
         <div class="flex w-full items-center justify-between px-2">
           <Typography intent="h2">Play vs Player</Typography>
           <PlayerVsPlayerIcon />

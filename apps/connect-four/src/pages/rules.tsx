@@ -1,14 +1,8 @@
 import { CircledButton, Typography } from "@generalist/connect-four/ui";
 import { useNavigate } from "@solidjs/router";
-import { Component, For, onMount } from "solid-js";
+import { Component, For } from "solid-js";
 
 const RulesPage: Component = () => {
-  // eslint-disable-next-line prefer-const
-  let dialog: HTMLDialogElement | undefined = undefined;
-  onMount(() => {
-    dialog?.show();
-  });
-
   const navigate = useNavigate();
 
   const howToPlay = () => [
@@ -19,9 +13,9 @@ const RulesPage: Component = () => {
   ];
 
   return (
-    <main class="flex h-screen items-center justify-center overflow-hidden bg-royal-purple">
+    <main class="flex h-screen items-center justify-center overflow-hidden bg-violet-blue">
       <dialog
-        ref={dialog}
+        open
         class="relative h-[70%] w-[95%] rounded-b-[38px] rounded-t-[40px] bg-black md:h-[580px] md:w-3/5 lg:w-[490px]"
       >
         <div class="absolute inset-1 flex h-[97.5%] flex-col gap-8 rounded-b-[38px] rounded-t-[36px] bg-white px-5 pt-5 outline-none">

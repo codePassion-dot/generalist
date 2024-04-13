@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { cva, VariantProps } from "class-variance-authority";
-import type { JSX, ComponentProps, Component } from "solid-js";
+import { JSX, type ComponentProps } from "solid-js";
 import { Dynamic } from "solid-js/web";
 
 const typography = cva("typography", {
@@ -20,37 +20,18 @@ const typography = cva("typography", {
 
 type CvaTypographyProps = VariantProps<typeof typography>;
 
-type ElementType =
-  | Exclude<CvaTypographyProps["intent"], null | undefined>
-  | Component<any>;
+type ElementType = Exclude<CvaTypographyProps["intent"], null | undefined>;
 
-type DynamicProps<T extends ElementType> = {
-  children?: JSX.Element;
-  intent?: Exclude<T, Component<any>>;
-};
+type TypographyProps<T extends ElementType> = ComponentProps<T> &
+  CvaTypographyProps & { children: JSX.Element };
 
-type HtmlTagPropsWithoutAsAndChildren<T extends ElementType> = Omit<
-  ComponentProps<T>,
-  keyof DynamicProps<T>
->;
-
-type TypographyProps<T extends ElementType> =
-  HtmlTagPropsWithoutAsAndChildren<T> &
-    Omit<CvaTypographyProps, "intent"> &
-    DynamicProps<T>;
-
-const Typography = <T extends ElementType = "p">({
-  intent,
-  class: className,
-  as,
-  ...props
-}: TypographyProps<T>) => {
-  const component = as || "p";
+const Typography = <T extends ElementType>(props: TypographyProps<T>) => {
+  const component = props.intent || "p";
 
   return (
     <Dynamic
       component={component}
-      class={typography({ intent, className })}
+      class={typography({ intent: props.intent, className: props.class })}
       {...props}
     />
   );

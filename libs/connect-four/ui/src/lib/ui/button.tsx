@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { cva, type VariantProps } from "class-variance-authority";
-import { ComponentProps, type Component, type JSX } from "solid-js";
+import { ComponentProps, type Component, JSX } from "solid-js";
 import { Dynamic } from "solid-js/web";
 
 const buttonWithin = cva(
@@ -21,35 +21,18 @@ const buttonWithin = cva(
 
 type ElementType = "button" | Component<any>;
 
-type DynamicProps<T extends ElementType> = {
-  children?: JSX.Element;
-  as?: T;
-};
+type ButtonProps<T extends ElementType> = Omit<ComponentProps<T>, "as"> &
+  VariantProps<typeof buttonWithin> & { children: JSX.Element; as?: T };
 
-type HtmlTagPropsWithoutAsAndChildren<T extends ElementType> = Omit<
-  ComponentProps<T>,
-  keyof DynamicProps<T>
->;
-
-type ButtonProps<T extends ElementType> = HtmlTagPropsWithoutAsAndChildren<T> &
-  JSX.ButtonHTMLAttributes<HTMLButtonElement> &
-  VariantProps<typeof buttonWithin> &
-  DynamicProps<T>;
-
-const Button = <T extends ElementType = "button">({
-  intent,
-  children,
-  as,
-  ...props
-}: ButtonProps<T>) => {
-  const component = as || "button";
+const Button = <T extends ElementType>(props: ButtonProps<T>) => {
+  const component = props.as || "button";
   return (
     <Dynamic
       component={component}
       class="relative h-14 w-full rounded-b-xl rounded-t-2xl bg-black py-10 hover:bg-royal-purple focus:outline-none"
       {...props}
     >
-      <div class={buttonWithin({ intent })}>{children}</div>
+      <div class={buttonWithin({ intent: props.intent })}>{props.children}</div>
     </Dynamic>
   );
 };

@@ -1,6 +1,6 @@
 import { CircledButton, Typography } from "@generalist/connect-four/ui";
 import { useNavigate } from "@solidjs/router";
-import { Component, onMount } from "solid-js";
+import { Component, For, onMount } from "solid-js";
 
 const RulesPage: Component = () => {
   // eslint-disable-next-line prefer-const
@@ -11,7 +11,7 @@ const RulesPage: Component = () => {
 
   const navigate = useNavigate();
 
-  const howToPlay = [
+  const howToPlay = () => [
     "Red goes first in the first game.",
     "Players must alternate turns, and only one disc can be dropped in each turn.",
     "The game ends when there is a 4-in-a-row or a stalemate.",
@@ -42,16 +42,18 @@ const RulesPage: Component = () => {
               How to play
             </Typography>
             <ol class="list-outside list-decimal-without-dot pl-4">
-              {howToPlay.map((rule) => (
-                <li class="[&:not(last-child)]:mb-3">
-                  <Typography
-                    class="relative left-3 inline text-right text-black/65"
-                    intent="p"
-                  >
-                    {rule}
-                  </Typography>
-                </li>
-              ))}
+              <For each={howToPlay()}>
+                {(rule) => (
+                  <li class="[&:not(last-child)]:mb-3">
+                    <Typography
+                      class="relative left-3 inline text-right text-black/65"
+                      intent="p"
+                    >
+                      {rule}
+                    </Typography>
+                  </li>
+                )}
+              </For>
             </ol>
           </section>
         </div>

@@ -20,6 +20,9 @@
       "@generalist/api-rest/shared-types": [
         "libs/api-rest/shared-types/src/index.ts"
       ],
+      "@generalist/connect-four/game-board": [
+        "libs/connect-four/game-board/src/index.ts"
+      ],
       "@generalist/connect-four/ui": ["libs/connect-four/ui/src/index.ts"],
       "@generalist/db": ["libs/db/src/index.ts"],
       "@generalist/mailer": ["libs/mailer/src/index.ts"]

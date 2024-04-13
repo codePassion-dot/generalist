@@ -1,0 +1,8 @@
+{
+  "name": "connect-four-game-board",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/connect-four/game-board/src",
+  "projectType": "library",
+  "targets": {},
+  "tags": []
+}

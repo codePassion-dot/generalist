@@ -17,7 +17,7 @@ function CheckIcon(props: JSX.SvgSVGAttributes<SVGSVGElement>) {
   );
 }
 
-const CircledButton: Component<CircledButtonProps> = ({ ...props }) => (
+const CircledButton: Component<CircledButtonProps> = (props) => (
   <button
     class="group relative h-[64px] w-[64px] rounded-full bg-black hover:bg-royal-purple"
     {...props}

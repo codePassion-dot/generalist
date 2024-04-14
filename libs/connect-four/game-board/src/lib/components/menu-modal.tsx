@@ -1,13 +1,5 @@
 import { Button, Typography } from "@generalist/connect-four/ui";
-import {
-  Accessor,
-  Component,
-  JSX,
-  ParentComponent,
-  Setter,
-  onCleanup,
-  onMount,
-} from "solid-js";
+import { Accessor, Component, JSX, ParentComponent, Setter } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 import { useGameBoard } from "../providers/game-board-provider";
 
@@ -26,18 +18,11 @@ const ButtonTypography: ParentComponent = (props) => {
 
 const MenuModal: Component<Props> = (props) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_, { pauseTimer, continueTimer, resetGame }] = useGameBoard();
+  const [_, { resetGame, continueTimer }] = useGameBoard();
   const navigate = useNavigate();
 
-  onMount(() => {
-    pauseTimer();
-  });
-
-  onCleanup(() => {
-    continueTimer();
-  });
-
   const onContinueGamePressed = () => {
+    continueTimer();
     props.menuDialogElement()?.close();
   };
 

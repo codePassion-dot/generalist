@@ -19,6 +19,7 @@ const makeGameBoardContext = (initialState: GameBoardState) => {
 
   const changeCurrentPlayer = () => {
     setState("currentPlayer", (c) => (c === 1 ? 2 : 1));
+    setState("timer", "timeLeft", 15);
   };
 
   const increasePlayerScore = (playerId: 1 | 2) => {

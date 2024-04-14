@@ -1,4 +1,5 @@
 import {
+  GameBoard,
   GameBoardHeader,
   PlayersVs,
 } from "@generalist/connect-four/game-board";
@@ -8,6 +9,7 @@ const GameBoardPage = () => {
     <main class="h-screen overflow-hidden bg-violet-blue">
       <GameBoardHeader />
       <PlayersVs />
+      <GameBoard />
     </main>
   );
 };

@@ -8,7 +8,7 @@ const GameBoardHeader: Component = () => {
     createSignal<HTMLDialogElement>();
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_, { resetGame }] = useGameBoard();
+  const [_, { resetGame, pauseTimer, continueTimer }] = useGameBoard();
 
   const onDialogClicked: JSX.EventHandlerUnion<
     HTMLDialogElement,
@@ -16,15 +16,27 @@ const GameBoardHeader: Component = () => {
   > = (e) => {
     if (e.target.nodeName === "DIALOG") {
       (e.target as HTMLDialogElement).close();
+      continueTimer();
     }
   };
 
   const onMenuPressed = () => {
     menuDialogElement()?.showModal();
+    pauseTimer();
   };
 
   const onRestartGamePressed = () => {
     resetGame();
+  };
+
+  const onDialogKeyDown: JSX.EventHandlerUnion<
+    HTMLDialogElement,
+    KeyboardEvent
+  > = (event) => {
+    if (event.key === "Escape") {
+      continueTimer();
+      event.currentTarget.close();
+    }
   };
 
   return (
@@ -43,6 +55,7 @@ const GameBoardHeader: Component = () => {
         </div>
       </header>
       <MenuModal
+        onKeyDown={onDialogKeyDown}
         onClick={onDialogClicked}
         menuDialogElement={menuDialogElement}
         ref={setMenuDialogElement}

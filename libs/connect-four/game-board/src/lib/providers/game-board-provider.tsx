@@ -10,7 +10,7 @@ type GameBoardState = {
   player1: Player & { playerId: 1; color: "royal-purple" };
   player2: Player & { playerId: 2; color: "pastel-yellow" };
   currentPlayer: 1 | 2;
-  timeLeft: number;
+  timer: { timeLeft: number; paused: boolean };
   board: number[][];
 };
 
@@ -26,14 +26,16 @@ const makeGameBoardContext = (initialState: GameBoardState) => {
   };
 
   const decreaseTimeLeft = () => {
-    setState("timeLeft", (t) => t - 1);
+    setState("timer", "timeLeft", (t) => t - 1);
   };
 
   const resetTimeLeft = () => {
-    setState("timeLeft", 15);
+    setState("timer", "timeLeft", 15);
   };
 
-  const resetBoard = () => {
+  const resetGame = () => {
+    setState("currentPlayer", 1);
+    setState("timer", { timeLeft: 15, paused: false });
     setState(
       "board",
       Array.from({ length: 6 }, () => Array.from({ length: 7 }, () => 0)),
@@ -55,11 +57,21 @@ const makeGameBoardContext = (initialState: GameBoardState) => {
     );
   };
 
+  const pauseTimer = () => {
+    setState("timer", "paused", true);
+  };
+
+  const continueTimer = () => {
+    setState("timer", "paused", false);
+  };
+
   return [
     state,
     {
+      pauseTimer,
+      continueTimer,
       confirmMove,
-      resetBoard,
+      resetGame,
       changeCurrentPlayer,
       increasePlayerScore,
       decreaseTimeLeft,
@@ -96,7 +108,10 @@ const initialState = {
     label: "Player 2",
   },
   currentPlayer: 1,
-  timeLeft: 15,
+  timer: {
+    timeLeft: 15,
+    paused: false,
+  },
   board: Array.from({ length: 6 }, () => Array.from({ length: 7 }, () => 0)),
 } as const;
 

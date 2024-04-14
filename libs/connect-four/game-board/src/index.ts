@@ -1,1 +1,1 @@
-export * from './lib/connect-four-game-board';
+export * from "./lib";

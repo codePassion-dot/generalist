@@ -25,7 +25,8 @@
       ],
       "@generalist/connect-four/ui": ["libs/connect-four/ui/src/index.ts"],
       "@generalist/db": ["libs/db/src/index.ts"],
-      "@generalist/mailer": ["libs/mailer/src/index.ts"]
+      "@generalist/mailer": ["libs/mailer/src/index.ts"],
+      "@generalist/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

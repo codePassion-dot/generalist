@@ -1,12 +1,7 @@
 import { Typography } from "@generalist/connect-four/ui";
 import { Component, JSX, Show } from "solid-js";
 import { useGameBoard } from "../providers/game-board-provider";
-import { twMerge } from "tailwind-merge";
-import { clsx, type ClassValue } from "clsx";
-
-function cn(...args: ClassValue[]) {
-  return twMerge(clsx(args));
-}
+import { cn } from "@generalist/utils";
 
 const PlayerOneIcon = (props: JSX.SvgSVGAttributes<SVGSVGElement>) => {
   return (

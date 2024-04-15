@@ -25,7 +25,7 @@ type MenuChildProps = {
 const MenuChild: Component<MenuChildProps> = (props) => {
   return (
     <>
-      <Typography intent="h1" class="uppercase">
+      <Typography intent="h1" class="mb-4 uppercase">
         Pause
       </Typography>
       <Button onClick={props.onContinueGamePressed} intent="white">

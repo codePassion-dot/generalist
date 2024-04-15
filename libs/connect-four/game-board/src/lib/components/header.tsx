@@ -41,14 +41,14 @@ const GameBoardHeader: Component = () => {
 
   return (
     <>
-      <header class="my-10 flex items-center justify-between px-4">
-        <div class="basis-1/3">
+      <header class="my-10 flex items-center justify-between px-4 md:px-20">
+        <div class="basis-1/3 md:basis-1/6">
           <SimpleRoundedButton onClick={onMenuPressed}>
             Menu
           </SimpleRoundedButton>
         </div>
         <Logo />
-        <div class="basis-1/3">
+        <div class="basis-1/3 md:basis-1/6">
           <SimpleRoundedButton onClick={onRestartGamePressed}>
             Restart
           </SimpleRoundedButton>

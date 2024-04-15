@@ -100,8 +100,8 @@ const BackLayer: Component<JSX.IntrinsicElements["svg"]> = (props) => {
 const TurnWidgetSvg: Component<JSX.IntrinsicElements["svg"]> = (props) => {
   return (
     <svg
-      width={197}
-      height={165}
+      width="1em"
+      height="1em"
       viewBox="0 0 197 165"
       fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
@@ -125,8 +125,8 @@ const TurnWidgetSvg: Component<JSX.IntrinsicElements["svg"]> = (props) => {
           id="filter0_d_5_3228"
           x={0}
           y={0.683594}
-          width={197}
-          height={164.316}
+          width="1em"
+          height="1em"
           filterUnits="userSpaceOnUse"
           color-interpolation-filters="sRGB"
         >
@@ -173,17 +173,17 @@ const TurnWidget = () => {
   }, state.timer.paused);
 
   return (
-    <div class="absolute left-1/2 top-[320px] z-20 -translate-x-1/2">
+    <div class="absolute left-1/2 top-[300px] z-20 -translate-x-1/2 md:top-[74vw]">
       <div class="relative">
         <Show
-          fallback={<TurnWidgetSvg class="text-pastel-yellow" />}
+          fallback={<TurnWidgetSvg class="text-pastel-yellow text-[195px]" />}
           when={state.currentPlayer === 1}
         >
-          <TurnWidgetSvg class="text-salmon-pink" />
+          <TurnWidgetSvg class="text-salmon-pink text-[195px]" />
         </Show>
         <div
           class={cn(
-            "absolute left-1/2 top-1/2 flex w-full -translate-x-1/2 -translate-y-1/2 flex-col gap-1",
+            "absolute left-1/2 top-1/2 mt-2 flex w-full -translate-x-1/2 -translate-y-1/2 flex-col gap-1",
             state.currentPlayer === 1 ? "text-white" : "text-black",
           )}
         >
@@ -200,11 +200,11 @@ const TurnWidget = () => {
 };
 const GameBoard: Component = () => {
   return (
-    <article class="relative mt-8 h-full overflow-hidden">
-      <FrontLayer class="absolute left-1/2 z-20 -translate-x-1/2 text-[350px]" />
-      <BackLayer class="absolute inset-x-0 left-1/2 top-1 z-10 -translate-x-1/2 text-[350px]" />
+    <article class="relative mt-8 h-full overflow-hidden md:mt-1">
+      <FrontLayer class="absolute left-1/2 z-20 -translate-x-1/2 text-[350px] md:text-[85vw]" />
+      <BackLayer class="absolute inset-x-0 left-1/2 top-1 z-10 -translate-x-1/2 text-[350px] md:text-[85vw]" />
       <TurnWidget />
-      <div class="bg-royal-purple absolute inset-x-0 top-[320px] z-0 h-full w-full rounded-t-[60px]" />
+      <div class="bg-royal-purple absolute inset-x-0 top-[320px] z-0 h-full w-full rounded-t-[60px] md:top-[76vw]" />
     </article>
   );
 };

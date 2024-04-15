@@ -70,11 +70,26 @@ type PlayerWidgetProps = {
 const PlayerWidget: Component<PlayerWidgetProps> = (props) => {
   return (
     <section class="relative h-24 w-full rounded-b-3xl rounded-t-3xl bg-black">
-      <div class="absolute inset-[3px] flex h-5/6 flex-col items-center justify-center rounded-b-3xl rounded-t-[21px] bg-white outline-none">
-        <Typography intent="h4" class="uppercase">
+      <div
+        class={cn(
+          "absolute inset-[3px] flex h-5/6 flex-col items-center justify-center rounded-b-3xl rounded-t-[21px] bg-white outline-none md:justify-around",
+          props.playerId === 2 ? "md:flex-row-reverse" : "md:flex-row",
+        )}
+      >
+        <Typography intent="h4" class="uppercase md:hidden">
           {props.playerName}
         </Typography>
-        <Typography intent="h2" class="text-[32px] uppercase leading-none">
+        <Typography
+          intent="h2"
+          class="text-[32px] uppercase leading-none md:hidden"
+        >
+          {props.playerScore}
+        </Typography>
+        {/* tablet design */}
+        <Typography intent="h3" class="hidden uppercase md:block">
+          {props.playerName}
+        </Typography>
+        <Typography intent="h1" class="hidden uppercase md:block">
           {props.playerScore}
         </Typography>
       </div>
@@ -95,7 +110,7 @@ const PlayerWidget: Component<PlayerWidgetProps> = (props) => {
 const PlayersVs = () => {
   const [{ player1, player2 }] = useGameBoard();
   return (
-    <div class="flex items-center justify-between gap-3 px-8">
+    <div class="flex items-center justify-between gap-3 px-8 md:px-20">
       <PlayerWidget
         playerId={player1.playerId}
         playerName={player1.label}
